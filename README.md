@@ -1,3 +1,9 @@
+![image](https://github.com/BasharIrani23/storefront/assets/129655131/c5cdced6-327f-4197-9905-97b098705d2d)
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
