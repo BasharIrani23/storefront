@@ -1,11 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Products = () => {
     const products = useSelector((state) => state.products);
     const activeCategory = useSelector(
         (state) => state.categories.activeCategory
     );
+    const dispatch = useDispatch();
+
+    const addToCart = (product) => {
+        dispatch({ type: "ADD_TO_CART", payload: product });
+    };
 
     const filteredProducts = products.filter(
         (product) => product.category === activeCategory
@@ -26,6 +31,12 @@ const Products = () => {
                                 <p className="card-text">
                                     Price: ${product.price}
                                 </p>
+                                <button
+                                    onClick={() => addToCart(product)}
+                                    className="btn btn-primary"
+                                >
+                                    Add to Cart
+                                </button>
                             </div>
                         </div>
                     </div>
