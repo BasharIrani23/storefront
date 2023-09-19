@@ -43,6 +43,9 @@ const Products = () => {
                                 alt={product.name}
                             />
                             <CardContent>
+                                <p className="card-text">
+                                    In Stock: {product.inventoryCount}
+                                </p>
                                 <Typography variant="h6">
                                     {product.name}
                                 </Typography>

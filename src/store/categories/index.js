@@ -2,6 +2,7 @@ const initialState = {
     categories: [
         { name: "electronics", displayName: "Electronics" },
         { name: "clothing", displayName: "Clothing" },
+        { name: "books", displayName: "Books" },
     ],
     activeCategory: "",
 };
