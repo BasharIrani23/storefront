@@ -1,0 +1,4 @@
+.simple-cart {
+    max-height: 300px; // adjust this to an appropriate height
+    overflow-y: auto; // will make it scrollable if the content exceeds max-height
+}

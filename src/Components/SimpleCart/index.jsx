@@ -1,8 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {
+    List,
+    ListItem,
+    ListItemText,
+    ListItemSecondaryAction,
+    Button,
+    Typography,
+} from "@mui/material";
 
 const SimpleCart = () => {
-    const cart = useSelector((state) => state.cart);
+    const cartItems = useSelector((state) => state.cart.items);
     const dispatch = useDispatch();
 
     const removeFromCart = (product) => {
@@ -11,17 +19,25 @@ const SimpleCart = () => {
 
     return (
         <div className="simple-cart">
-            <h3>Shopping Cart</h3>
-            <ul>
-                {cart.map((item, index) => (
-                    <li key={index}>
-                        {item.name}
-                        <button onClick={() => removeFromCart(item)}>
-                            Remove
-                        </button>
-                    </li>
+            <Typography variant="h5" gutterBottom>
+                Shopping Cart
+            </Typography>
+            <List>
+                {cartItems.map((item, index) => (
+                    <ListItem key={index}>
+                        <ListItemText primary={item.name} />
+                        <ListItemSecondaryAction>
+                            <Button
+                                variant="outlined"
+                                color="secondary"
+                                onClick={() => removeFromCart(item)}
+                            >
+                                Remove
+                            </Button>
+                        </ListItemSecondaryAction>
+                    </ListItem>
                 ))}
-            </ul>
+            </List>
         </div>
     );
 };
