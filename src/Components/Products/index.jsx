@@ -1,5 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {
+    Card,
+    CardContent,
+    CardActions,
+    Button,
+    CardMedia,
+    Typography,
+    Grid,
+} from "@mui/material";
+import "./style.scss";
 
 const Products = () => {
     const products = useSelector((state) => state.products);
@@ -18,30 +28,47 @@ const Products = () => {
 
     return (
         <div>
-            <h2 className="mb-3">Products in {activeCategory}</h2>
-            <div className="row">
+            <Typography variant="h5" className="mb-3">
+                Products in {activeCategory}
+            </Typography>
+            <Grid container spacing={4}>
                 {filteredProducts.map((product) => (
-                    <div className="col-12 col-md-4 mb-4" key={product.name}>
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">{product.name}</h5>
-                                <p className="card-text">
+                    <Grid item xs={12} md={4} key={product.name}>
+                        <Card>
+                            <CardMedia
+                                component="img"
+                                className="product-image"
+                                height="140"
+                                image={product.imageUrl}
+                                alt={product.name}
+                            />
+                            <CardContent>
+                                <Typography variant="h6">
+                                    {product.name}
+                                </Typography>
+                                <Typography
+                                    variant="body2"
+                                    color="textSecondary"
+                                >
                                     {product.description}
-                                </p>
-                                <p className="card-text">
+                                </Typography>
+                                <Typography variant="body1">
                                     Price: ${product.price}
-                                </p>
-                                <button
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
                                     onClick={() => addToCart(product)}
-                                    className="btn btn-primary"
                                 >
                                     Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
                 ))}
-            </div>
+            </Grid>
         </div>
     );
 };

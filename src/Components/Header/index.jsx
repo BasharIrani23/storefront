@@ -5,7 +5,7 @@ import "./style.scss";
 const Header = () => {
     return (
         <div className="header-root">
-            <AppBar position="static">
+            <AppBar position="static" color="primary">
                 <Toolbar>
                     <Typography variant="h6" className="header-title">
                         Storefront

@@ -12,8 +12,8 @@ const ActiveCategory = () => {
 
     return (
         <div>
-            <h2>{activeCategory.display_name}</h2>
-            <p>{activeCategory.description}</p>
+            <h2>{activeCategory?.display_name}</h2>
+            <p>{activeCategory?.description}</p>
         </div>
     );
 };

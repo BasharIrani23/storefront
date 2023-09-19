@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Button } from "@mui/material";
 
 const Categories = () => {
     const categories = useSelector((state) => state.categories.categories);
@@ -12,13 +13,13 @@ const Categories = () => {
         <div className="mb-4">
             <h2 className="mb-3">Product Categories</h2>
             {categories.map((category) => (
-                <button
-                    key={category.name}
-                    className={`btn btn-${
+                <Button
+                    variant={
                         activeCategory === category.name
-                            ? "primary"
-                            : "outline-primary"
-                    } mr-2`}
+                            ? "contained"
+                            : "outlined"
+                    }
+                    color="primary"
                     onClick={() =>
                         dispatch({
                             type: "SET_ACTIVE_CATEGORY",
@@ -27,7 +28,7 @@ const Categories = () => {
                     }
                 >
                     {category.displayName}
-                </button>
+                </Button>
             ))}
         </div>
     );
