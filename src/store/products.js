@@ -47,6 +47,30 @@ const initialState = [
         inventoryCount: 6,
         imageUrl: "https://example.com/jacket.jpg",
     },
+    {
+        category: "books",
+        name: "Fiction Book",
+        description: "Best-selling fiction book",
+        price: 15,
+        inventoryCount: 20,
+        imageUrl: "https://example.com/fiction-book.jpg",
+    },
+    {
+        category: "books",
+        name: "Mystery",
+        description: "Popular Mystery",
+        price: 20,
+        inventoryCount: 15,
+        imageUrl: "https://example.com/Mystery-book.jpg",
+    },
+    {
+        category: "books",
+        name: "Children's Book",
+        description: "Colorful children's book",
+        price: 10,
+        inventoryCount: 25,
+        imageUrl: "https://example.com/children-book.jpg",
+    },
 ];
 
 const productsReducer = (state = initialState, action) => {
@@ -55,7 +79,18 @@ const productsReducer = (state = initialState, action) => {
             return state.filter(
                 (product) => product.category === action.payload
             );
-
+        case "ADD_TO_CART":
+            return state.map((product) =>
+                product.name === action.payload.name
+                    ? { ...product, inventoryCount: product.inventoryCount - 1 }
+                    : product
+            );
+        case "REMOVE_FROM_CART":
+            return state.map((product) =>
+                product.name === action.payload.name
+                    ? { ...product, inventoryCount: product.inventoryCount + 1 }
+                    : product
+            );
         default:
             return state;
     }
