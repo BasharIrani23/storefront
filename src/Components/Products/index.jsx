@@ -1,5 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import {
+    getProductsFromAPI,
+    updateProductInventory,
+} from "../../store/products";
 import {
     Card,
     CardContent,
@@ -18,8 +23,12 @@ const Products = () => {
     );
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(getProductsFromAPI());
+    }, [dispatch]);
+
     const addToCart = (product) => {
-        dispatch({ type: "ADD_TO_CART", payload: product });
+        dispatch(updateProductInventory(product, true));
     };
 
     const filteredProducts = products.filter(
@@ -29,11 +38,13 @@ const Products = () => {
     return (
         <div>
             <Typography variant="h5" className="mb-3">
-                Products in {activeCategory}
+                {activeCategory
+                    ? `Products in ${activeCategory}`
+                    : "All Products"}
             </Typography>
             <Grid container spacing={4}>
                 {filteredProducts.map((product) => (
-                    <Grid item xs={12} md={4} key={product.name}>
+                    <Grid item xs={12} md={4} key={product._id}>
                         <Card>
                             <CardMedia
                                 component="img"
@@ -44,7 +55,7 @@ const Products = () => {
                             />
                             <CardContent>
                                 <p className="card-text">
-                                    In Stock: {product.inventoryCount}
+                                    In Stock: {product.inStock}
                                 </p>
                                 <Typography variant="h6">
                                     {product.name}
