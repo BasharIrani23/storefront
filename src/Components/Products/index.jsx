@@ -15,7 +15,7 @@ import {
     Grid,
 } from "@mui/material";
 import "./style.scss";
-
+import { Link } from "react-router-dom";
 const Products = () => {
     const products = useSelector((state) => state.products);
     const activeCategory = useSelector(
@@ -78,6 +78,10 @@ const Products = () => {
                                 >
                                     Add to Cart
                                 </Button>
+                                {/* Add the Product Details link here */}
+                                <Link to={`/products/${product._id}`}>
+                                    Product Details
+                                </Link>
                             </CardActions>
                         </Card>
                     </Grid>
